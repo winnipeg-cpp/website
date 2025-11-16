@@ -99,6 +99,25 @@ hugo new posts/2025/2025-11/2025-11-15-my-post.md
 
 **Important:** Hugo will NOT display posts with future dates by default. If a post has a date in the future, it won't appear on the site until that date arrives. To preview future posts during development, use `hugo server -D --buildFuture`.
 
+### Pinning Posts
+
+To keep a post at the top of your posts list (like a welcome or important announcement), add `weight` to the front matter:
+
+```toml
++++
+date = '2025-11-15T12:00:00-06:00'
+draft = false
+title = 'Welcome Post'
+weight = 1
++++
+```
+
+**How weight works:**
+- Lower numbers appear first (e.g., `weight = 1` is higher priority than `weight = 10`)
+- Posts with weight always appear before posts without weight
+- Posts without weight are sorted by date (newest first)
+- Use `weight = 1` for your most important pinned post
+
 ## Images and Media
 
 Images should be placed in the `static/` directory. Hugo copies everything from `static/` to the root of your published site.
