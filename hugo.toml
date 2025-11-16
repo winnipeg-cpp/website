@@ -11,6 +11,9 @@ theme = 'PaperMod'
 [params]
   [params.logo]
     logoText = 'Winnipeg C++ Developers'
+    # Uncomment and add path to use an image instead of text
+    # logo = '/images/logo.png'
+    # logoHeight = 30
 
 [[menu.main]]
   name = 'Posts'
