@@ -42,3 +42,30 @@ theme = 'PaperMod'
 [[params.socialIcons]]
   name = 'eventbrite'
   url = 'https://www.eventbrite.ca/o/braden-ganetsky-77752664253'
+
+# Newsletter subscription configuration (disabled by default)
+# Uncomment and configure to enable email subscriptions
+# See docs/NEWSLETTER_SETUP.md for detailed setup instructions
+#
+# [params.newsletter]
+#   enabled = true
+#   provider = "buttondown"  # Options: "buttondown", "mailchimp", "custom"
+#   title = "Subscribe to our newsletter"
+#   description = "Get notified when we publish new posts about C++ development in Winnipeg"
+#   placeholder = "your@email.com"
+#   buttonText = "Subscribe"
+#   note = "We respect your privacy. Unsubscribe at any time."
+#
+#   # For Buttondown (recommended - free, privacy-focused)
+#   [params.newsletter.buttondown]
+#     username = "winnipeg-cpp"  # Your Buttondown username
+#
+#   # For Mailchimp (uncomment if using Mailchimp instead)
+#   # [params.newsletter.mailchimp]
+#   #   actionUrl = "https://yourname.us1.list-manage.com/subscribe/post?u=xxx&id=yyy"
+#   #   botField = "b_xxx_yyy"
+#
+#   # For custom provider (uncomment if using another service)
+#   # [params.newsletter.custom]
+#   #   actionUrl = "https://your-service.com/subscribe"
+#   #   emailFieldName = "email"
