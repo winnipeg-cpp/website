@@ -40,9 +40,10 @@
         required
         class="newsletter-email-input"
       />
-      {{- /* Real people should not fill this in and expect good things */}}
+      {{- /* Real people should not fill this in - honeypot for spam prevention */}}
       <div style="position: absolute; left: -5000px;" aria-hidden="true">
-        <input type="text" name="{{ site.Params.newsletter.mailchimp.botField }}" tabindex="-1" value="">
+        <label for="newsletter-bot-field" style="position: absolute; left: -5000px;">Leave this field empty</label>
+        <input type="text" id="newsletter-bot-field" name="{{ site.Params.newsletter.mailchimp.botField }}" tabindex="-1" value="">
       </div>
       <input type="submit" value="{{ site.Params.newsletter.buttonText | default "Subscribe" }}" class="newsletter-submit-btn" />
     </form>
@@ -68,7 +69,7 @@
     
     {{- else }}
     {{- /* Fallback: show configuration notice */}}
-    <p style="color: #888; font-style: italic;">Newsletter subscription form not configured. Please set newsletter.provider in hugo.toml</p>
+    <p class="newsletter-config-notice">Newsletter subscription form not configured. Please set newsletter.provider in hugo.toml</p>
     {{- end }}
     
     {{- with site.Params.newsletter.note }}
@@ -140,6 +141,12 @@
   margin-bottom: 0;
   font-size: 0.875rem;
   color: var(--secondary);
+}
+
+.newsletter-config-notice {
+  color: var(--secondary);
+  font-style: italic;
+  margin: 0;
 }
 
 @media (max-width: 480px) {
