@@ -1,9 +1,9 @@
 +++
-date = '2025-11-15T12:00:00-06:00'
+date = '2025-11-01T00:00:00-06:00'
 draft = false
 tags = ['community', 'announcement']
 title = 'Welcome to Winnipeg C++ Developers'
-weight = 1
+weight = -10
 +++
 
 ## Building a C++ Community in Winnipeg
