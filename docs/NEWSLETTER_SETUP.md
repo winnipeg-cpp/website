@@ -2,6 +2,8 @@
 
 This guide explains how to set up email newsletter subscriptions for the Winnipeg C++ Developers website.
 
+> **Quick Reference**: See [NEWSLETTER_EXAMPLES.md](NEWSLETTER_EXAMPLES.md) for copy-paste configuration examples.
+
 ## Overview
 
 The website includes a flexible newsletter subscription form that works with static Hugo sites. The form appears at the bottom of blog posts and can be configured to work with various email service providers.
