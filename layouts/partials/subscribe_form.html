@@ -1,0 +1,166 @@
+{{- if site.Params.newsletter.enabled }}
+<div class="newsletter-subscribe">
+  <div class="newsletter-content">
+    {{- with site.Params.newsletter.title }}
+    <h3>{{ . }}</h3>
+    {{- end }}
+    {{- with site.Params.newsletter.description }}
+    <p>{{ . | markdownify }}</p>
+    {{- end }}
+    
+    {{- if eq site.Params.newsletter.provider "buttondown" }}
+    {{- /* Buttondown newsletter service */}}
+    <form
+      action="https://buttondown.email/api/emails/embed-subscribe/{{ site.Params.newsletter.buttondown.username }}"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.email/{{ site.Params.newsletter.buttondown.username }}', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true"
+      class="newsletter-form"
+    >
+      <input
+        type="email"
+        name="email"
+        id="bd-email"
+        placeholder="{{ site.Params.newsletter.placeholder | default "Enter your email" }}"
+        required
+        class="newsletter-email-input"
+      />
+      <input type="submit" value="{{ site.Params.newsletter.buttonText | default "Subscribe" }}" class="newsletter-submit-btn" />
+    </form>
+    
+    {{- else if eq site.Params.newsletter.provider "mailchimp" }}
+    {{- /* Mailchimp newsletter service */}}
+    {{- /* Users should replace the action URL with their Mailchimp form action URL */}}
+    {{- with site.Params.newsletter.mailchimp.actionUrl }}
+    <form action="{{ . }}" method="post" target="_blank" class="newsletter-form">
+      <input
+        type="email"
+        name="EMAIL"
+        placeholder="{{ site.Params.newsletter.placeholder | default "Enter your email" }}"
+        required
+        class="newsletter-email-input"
+      />
+      {{- /* Real people should not fill this in - honeypot for spam prevention */}}
+      <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <label for="newsletter-bot-field" style="position: absolute; left: -5000px;">Leave this field empty</label>
+        <input type="text" id="newsletter-bot-field" name="{{ site.Params.newsletter.mailchimp.botField }}" tabindex="-1" value="">
+      </div>
+      <input type="submit" value="{{ site.Params.newsletter.buttonText | default "Subscribe" }}" class="newsletter-submit-btn" />
+    </form>
+    {{- end }}
+    
+    {{- else if eq site.Params.newsletter.provider "custom" }}
+    {{- /* Custom form action for other services */}}
+    {{- with site.Params.newsletter.custom.actionUrl }}
+    <form action="{{ . }}" method="post" class="newsletter-form">
+      <input
+        type="email"
+        name="{{ site.Params.newsletter.custom.emailFieldName | default "email" }}"
+        placeholder="{{ site.Params.newsletter.placeholder | default "Enter your email" }}"
+        required
+        class="newsletter-email-input"
+      />
+      {{- range site.Params.newsletter.custom.hiddenFields }}
+      <input type="hidden" name="{{ .name }}" value="{{ .value }}" />
+      {{- end }}
+      <input type="submit" value="{{ site.Params.newsletter.buttonText | default "Subscribe" }}" class="newsletter-submit-btn" />
+    </form>
+    {{- end }}
+    
+    {{- else }}
+    {{- /* Fallback: show configuration notice */}}
+    <p class="newsletter-config-notice">Newsletter subscription form not configured. Please set newsletter.provider in hugo.toml</p>
+    {{- end }}
+    
+    {{- with site.Params.newsletter.note }}
+    <p class="newsletter-note">{{ . | markdownify }}</p>
+    {{- end }}
+  </div>
+</div>
+
+<style>
+.newsletter-subscribe {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 32px 0;
+}
+
+.newsletter-content h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+.newsletter-content p {
+  margin-bottom: 16px;
+  color: var(--secondary);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.newsletter-email-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--theme);
+  color: var(--primary);
+  font-size: 14px;
+}
+
+.newsletter-email-input:focus {
+  outline: none;
+  border-color: var(--tertiary);
+}
+
+.newsletter-submit-btn {
+  padding: 10px 24px;
+  background: var(--tertiary);
+  color: var(--theme);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.newsletter-submit-btn:hover {
+  background: var(--secondary);
+}
+
+.newsletter-note {
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: var(--secondary);
+}
+
+.newsletter-config-notice {
+  color: var(--secondary);
+  font-style: italic;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-email-input {
+    min-width: 100%;
+  }
+  
+  .newsletter-submit-btn {
+    width: 100%;
+  }
+}
+</style>
+{{- end }}
