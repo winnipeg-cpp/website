@@ -26,6 +26,7 @@ We welcome contributions! Here's how you can help:
    ```bash
    git clone https://github.com/winnipeg-cpp/website.git
    cd website
+   git submodule update --init
    ```
 
 2. **Create a branch:**
@@ -68,6 +69,7 @@ See **[docs/CONTENT_GUIDE.md](docs/CONTENT_GUIDE.md)** for detailed content crea
 # Clone and preview
 git clone https://github.com/winnipeg-cpp/website.git
 cd website
+git submodule update --init
 hugo server
 ```
 
