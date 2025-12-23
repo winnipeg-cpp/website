@@ -76,6 +76,7 @@ hugo server
 ## Documentation
 
 - **[docs/CONTENT_GUIDE.md](docs/CONTENT_GUIDE.md)** - How to create and organize posts
+- **[docs/NEWSLETTER_SETUP.md](docs/NEWSLETTER_SETUP.md)** - How to set up email newsletter subscriptions
 - **[AGENTS.md](AGENTS.md)** - Repository conventions and guidelines
 
 ## Project Structure

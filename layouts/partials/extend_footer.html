@@ -1,0 +1,4 @@
+{{- /* Include newsletter subscription form on single post pages */ -}}
+{{- if and (eq .Kind "page") (eq .Section "posts") }}
+  {{- partial "subscribe_form.html" . }}
+{{- end }}
