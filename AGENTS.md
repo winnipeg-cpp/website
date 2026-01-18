@@ -27,7 +27,14 @@ Run `hugo server` and inspect pages in multiple viewport sizes before opening a 
 ## Commit & Pull Request Guidelines
 Follow the short, imperative style used in the history (`Add ...`, `Update ...`) and keep commits scoped to a single change. Reference related issues in the commit body or PR description using `Fixes #ID` when applicable. Pull requests should outline the change, list verification steps (commands run, browsers checked), and include screenshots for visual updates. Avoid committing generated output (`public/`, `resources/`) unless a release workflow explicitly requires it.
 
+## Safety and secrets
+- Never add secrets to git (tokens, passwords, private keys).
+- If a secret is suspected in history, stop and rotate the secret before trying to "remove it from git".
+- Avoid running untrusted scripts (especially curl-to-shell patterns).
+
 ## Content Workflow
 Generate new posts with `hugo new --kind <type> posts/YYYY/YYYY-MM/<filename>.md` using the appropriate archetype (meetup, announcement, technical). Hugo creates the folder structure automatically and populates templates with placeholders. Edit the generated file to fill in bracketed placeholders. Toggle `draft = false` only once the copy, links, and assets have been proofed. For scheduled posts, set `publishDate` in the front matter so the page remains hidden until release.
+
+When adding a new item, review the last 2-3 similar items in `content/` and stick with the established structure and tone.
 
 For detailed instructions on creating content, see **[docs/CONTENT_GUIDE.md](docs/CONTENT_GUIDE.md)**.
